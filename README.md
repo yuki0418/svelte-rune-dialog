@@ -1,58 +1,68 @@
-# create-svelte
+# Svelte Rune Dialog
+Svelte Rune Dialog is a simple dialog component for Svelte 5.
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Use `<dialog>` element so dialog content will be rendered at `#top-layer`. If you want to know more about `<dialog>` element, please refer to [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+> [!IMPORTANT]  
+> Svelte Rune Dialog uses `@starting-style` for animations. Some browsers may not support `@starting-style`. You can check if your browser supports `@starting-style` by visiting [Can I use](https://caniuse.com/mdn-css_at-rules_starting-style).
 
-## Creating a project
+# How to use
+You can use this component easily as an example below.
 
-If you're seeing this, you've probably already done this step. Congrats!
+```svelte
+<script lang="ts">
+	import { Dialog } from '$lib/index.js';
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+	let isOpen = $state(false);
 
-# create a new project in my-app
-npm create svelte@latest my-app
+	const toggleDialog = () => {
+		isOpen = !isOpen;
+	};
+
+	const closeDialog = () => {
+		isOpen = false;
+	}
+</script>
+
+<h1>Svelte Rune Dialog Example</h1>
+<button onclick={toggleDialog}>{isOpen ? 'Close' : 'Open'} dialog</button>
+
+<Dialog bind:isOpen --backdrop-color="rgba(0, 0, 0, 0.8)">
+  <div>
+    <h2>Dialog Title</h2>
+    <p>Dialog Content</p>
+    <button onclick={closeDialog}>Close</button>
+  </div>
+</Dialog>
 ```
 
-## Developing
+# Properties
+| Property | Type | Description | Default |
+| --- | --- | --- | --- |
+| isOpen | boolean? | Dialog open or close state | false |
+| closeOnOutsideClick | boolean? | Close dialog when overlay clicked | true |
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Events
+| Event | Type | Description |
+| --- | --- | --- |
+| onopen | EventListener? | Fired when dialog closed |
+| onclose | EventListener? | Fired when dialog closed |
 
-```bash
-npm run dev
+# Style properties
+| Property | Type | Description | Default |
+| --- | --- | --- | --- |
+| --backdrop-color | String? | Backdrop color | rgba(0, 0, 0, 0.2) |
+| --transition-duration | String? | Transition duration | 0.3s |
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+# Demo
+You can see the demo by following steps below.
+1. Clone this repository.
+2. Run `npm install` to install dependencies.
+3. Run `npm run dev` or `npm run dev -- --open` to start the development server.
+4. Open `http://localhost:5173` in your browser.
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
-
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+If you use `yarn` then
+1. Clone this repository.
+2. Run `yarn install` to install dependencies.
+3. Run `yarn dev` or `yarn dev --open` to start the development server.
+4. Open `http://localhost:5173` in your browser.
