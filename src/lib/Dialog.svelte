@@ -72,19 +72,31 @@
 </script>
 
 <dialog bind:this={element} {...restProps}>
-	{#if children}
-		{@render children()}
-	{/if}
+	<div>
+		{#if children}
+			{@render children()}
+		{/if}
+	</div>
 </dialog>
 
 <style>
+	@property --transition-duration {
+		syntax: '<time>';
+		inherits: true;
+		initial-value: 0.3s;
+	}
+
+	@property --backdrop-color {
+		syntax: '<color>';
+		inherits: true;
+		initial-value: rgba(0, 0, 0, 0.2);
+	}
+
 	/* Rest default value */
 	dialog {
 		opacity: 0;
 		border: unset;
 		background: unset;
-		max-width: unset;
-		max-height: unset;
 		padding: unset;
 
 		/* Animation */
