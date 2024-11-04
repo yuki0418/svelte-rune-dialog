@@ -20,18 +20,6 @@
 			Click me
 		{/if}
 	</button>
-
-	<style>
-		button {
-			padding: 10px 20px;
-			border: none;
-			border-radius: 5px;
-			background-color: #007bff;
-			color: white;
-			cursor: pointer;
-			border-radius: var(--radius);
-		}
-	</style>
 {/snippet}
 
 {#snippet container()}
@@ -49,7 +37,8 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			min-width: 500px;
+			width: 100%;
+			max-width: 500px;
 			min-height: 300px;
 			background-color: white;
 			border-radius: var(--radius);
@@ -88,9 +77,22 @@
 		font-family: 'Roboto', sans-serif;
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
+		justify-content: center;
 		align-items: center;
-		min-height: 100vh;
-		padding-top: 30rem;
+		min-height: 100dvh;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	button {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		background-color: #007bff;
+		color: white;
+		cursor: pointer;
+		border-radius: var(--radius);
 	}
 </style>
